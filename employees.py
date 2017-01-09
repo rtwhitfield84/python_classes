@@ -4,31 +4,41 @@
 
 class Company(object):
 
-    def __init__(self, name, title, company_name, start_date):
+    def __init__(self, company_name):
+        self.company_name = company_name
+        self.employees = set()
+        
+    def getCompany(self):
+    	return self.company_name
+
+class Employee:
+
+    def __init__(self, name, title, start_date):
         self.name = name
         self.title = title
-        self.company_name = company_name
         self.start_date = start_date
 
     def getName(self):
         return self.name
 
     def getJob(self):
-    	return self.title
+        return self.title
 
     def startDate(self):
-    	return self.start_date
+        return self.start_date
 
-    def getCompany(self):
-    	return self.company_name
+if __name__ == '__main__':
 
-    def __str__(self):
-    	return "%s is a %s that began working at %s on %s" % (self.name, self.title, self.company_name, self.start_date)
+    Google = Company("Google")
+    richard = Employee("Richard", "Developer", "April 1st, 2017")
+    steven = Employee("Steven", "Developer", "April 1st, 2017")
+    drew = Employee("Drew", "Developer", "April 1st, 2017")
 
-richard = Company("Richard", "Developer", "Google", "April 1st, 2017")
+    Google.employees.add(richard)
+    Google.employees.add(steven)
+    Google.employees.add(drew)
 
-print(richard.getName())
-print(richard.getJob())
-print(richard.startDate())
-print(richard)
-    # Add the remaining methods to fill the requirements above
+for employee in Google.employees:
+    print('{} is a {} who works at {} and began on {}'.format(employee.name, employee.title, Google.company_name, employee.start_date))
+
+# print('{employee.name} is a {employee.title} who works at {Google.company_name} and began working on {employee.start_date}' for employee in Google.employees)
